@@ -1,6 +1,6 @@
 // 실행환경 보기
 // 새로운 회사 적응하느냐 nest로 못할지도 ?
-// 트랙픽 처리 
+// 트랙픽 처리
 let runmode = process.argv.slice(-1)[0];
 global.env = process.env;
 
@@ -16,24 +16,25 @@ else require("dotenv").config({ path: __dirname + "/config/.env_prod" });
 
 console.log("runmode", runmode);
 
-const express              = require('express'); 
-const cors                 = require("cors");
-const fs                   = require('fs');
-const app                  = express();
-const path                 = require('path')
-const indexRouter          = require('./routes');
-const userRouter           = require('./routes/user');
-const accountRouter        = require('./routes/eth')
-const transactionRouter    = require('./routes/transaction');
-const swapRouter           = require('./routes/swap');
-const adminRouter          = require('./routes/admin');
-const storeRouter          = require('./routes/store')
-const bodyParser           = require('body-parser');
-const image                = require('./controllers/upload-image')
-const cookieParser         = require('cookie-parser');
-const swaggerUi            = require("swagger-ui-express");
-const swaggerFile          = require("./swagger/swagger-output.json");
-app.use(cors({origin: "*",}));// 모든 출처 허용 옵션. true 를 써도 된다.
+const express = require("express");
+const cors = require("cors");
+const fs = require("fs");
+const app = express();
+const path = require("path");
+const indexRouter = require("./routes");
+const userRouter = require("./routes/user");
+const accountRouter = require("./routes/eth");
+const transactionRouter = require("./routes/transaction");
+const swapRouter = require("./routes/swap");
+const adminRouter = require("./routes/admin");
+const storeRouter = require("./routes/store");
+const bodyParser = require("body-parser");
+const image = require("./service/upload-image");
+const cookieParser = require("cookie-parser");
+const swaggerUi = require("swagger-ui-express");
+const specs = require("../Wallet/swagger");
+const swaggerFile = require("./swagger/swagger-output.json");
+app.use(cors({ origin: "*" })); // 모든 출처 허용 옵션. true 를 써도 된다.
 
 app.use(express.urlencoded({ extended: false })); // x-www-form-urlencoded형태의 데이터를 해석
 app.use(express.json()); // json 형태의 데이터를 해석

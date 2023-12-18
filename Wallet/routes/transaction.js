@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const opt_check = require("../middleware/otp-check");
 
-const transaction = require("../controllers/transaction");
+const transaction = require("../service/transaction");
 
 router.post("/dotori-check", transaction.dustin_check);
 

@@ -8,7 +8,7 @@ const Myroom = require("../models/Myroom");
 const User = require("../models/User");
 const Withdrawal = require("../models/Withdrawal");
 const Deposit = require("../models/Deposit ");
-const Dotori = require("../models/Dotori");
+const Dustin = require("../models/Dustin");
 const Purchase = require("../models/Purchase");
 const Payment = require("../models/Payment");
 const Retrieve = require("../models/Retrieve");
@@ -17,7 +17,7 @@ const Admin = require("../models/Admin");
 const AdminInfo = require("../models/AdminInfo");
 
 const Otp = require("./otp");
-const Validation = require("../controllers/validation");
+const Validation = require("../service/validation");
 const otp = new Otp();
 const validation = new Validation();
 const os = require("os");

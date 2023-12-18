@@ -1,4 +1,4 @@
-const Otp = require("../controllers/otp");
+const Otp = require("../service/otp");
 const User = require("../models/User");
 
 const otp = new Otp();

@@ -2,7 +2,7 @@ const User = require("../models/User");
 const Question = require("../models/Question");
 const nodemailer = require("nodemailer");
 const Otp = require("./otp");
-const Validation = require("../controllers/validation");
+const Validation = require("../service/validation");
 const otp = new Otp();
 const validation = new Validation();
 

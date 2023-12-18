@@ -17,7 +17,6 @@
           "upload"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -31,7 +30,6 @@
           "upload"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -42,7 +40,6 @@
     "/": {
       "get": {
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -56,7 +53,6 @@
           "user"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -292,7 +288,6 @@
           "user"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -630,7 +625,7 @@
                 "email": {
                   "example": "any"
                 },
-                "dotori": {
+                "dustin": {
                   "example": "any"
                 }
               }
@@ -644,7 +639,7 @@
         }
       }
     },
-    "/transaction/dotori-withrawal": {
+    "/transaction/dustin-withrawal": {
       "post": {
         "tags": [
           "transaction"
@@ -663,7 +658,7 @@
                 "token": {
                   "example": "any"
                 },
-                "dotori": {
+                "dustin": {
                   "example": "any"
                 }
               }
@@ -680,7 +675,7 @@
         }
       }
     },
-    "/transaction/dotori-deposit": {
+    "/transaction/dustin-deposit": {
       "post": {
         "tags": [
           "transaction"
@@ -696,7 +691,7 @@
                 "email": {
                   "example": "any"
                 },
-                "dotori": {
+                "dustin": {
                   "example": "any"
                 }
               }
@@ -710,7 +705,7 @@
         }
       }
     },
-    "/transaction/dotori-list/{id}": {
+    "/transaction/dustin-list/{id}": {
       "get": {
         "tags": [
           "transaction"
@@ -903,7 +898,7 @@
                 "email": {
                   "example": "any"
                 },
-                "dotori": {
+                "dustin": {
                   "example": "any"
                 }
               }
@@ -936,7 +931,7 @@
                 "token": {
                   "example": "any"
                 },
-                "dotori": {
+                "dustin": {
                   "example": "any"
                 },
                 "crypto": {
@@ -1142,7 +1137,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1193,7 +1187,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1231,7 +1224,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1266,7 +1258,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1311,7 +1302,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1388,7 +1378,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1441,7 +1430,7 @@
         }
       }
     },
-    "/admin/minimi/{id}": {
+    "/admin/furniture/{id}": {
       "delete": {
         "tags": [
           "admin"
@@ -1465,7 +1454,7 @@
         }
       }
     },
-    "/admin/miniroom/{id}": {
+    "/admin/myroom/{id}": {
       "delete": {
         "tags": [
           "admin"
@@ -1489,13 +1478,12 @@
         }
       }
     },
-    "/admin/minimi": {
+    "/admin/furniture": {
       "get": {
         "tags": [
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1503,13 +1491,12 @@
         }
       }
     },
-    "/admin/miniroom": {
+    "/admin/myroom": {
       "get": {
         "tags": [
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1523,7 +1510,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1678,7 +1664,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1692,7 +1677,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1706,7 +1690,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1822,7 +1805,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -1836,7 +1818,27 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/admin-info/{id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1850,7 +1852,6 @@
           "user"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1864,7 +1865,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1878,7 +1878,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1892,7 +1891,32 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/cs-auth": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/event-auth": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -1906,7 +1930,6 @@
           "admin"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
