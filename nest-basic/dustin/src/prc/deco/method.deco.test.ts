@@ -28,7 +28,7 @@ function HandleError() {
       try {
         method();
       } catch (e) {
-        // 에러 핸들링 로직 구현
+        // 에러 핸들링 로직 구현.
         console.log(e);
       }
     };
