@@ -1,5 +1,6 @@
 import { Controller, Get, Query, Redirect, Req } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ServiceB } from './user/service-B';
 
 /**
  * 와일드카드: 별표를 사용하면 문자열 가운데 어떤 문자가 와도 상관없다.
@@ -8,7 +9,10 @@ import { AppService } from './app.service';
 // @Controller('h*llo')
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly serviceB: ServiceB,
+  ) {}
 
   @Get()
   getHello(): string {
@@ -27,5 +31,10 @@ export class AppController {
     if (version && version === '5') {
       return { url: 'https://docs.nestjs.com/v5/' };
     }
+  }
+
+  @Get('/serviceB')
+  getHelloC(): string {
+    return this.serviceB.getHello();
   }
 }
