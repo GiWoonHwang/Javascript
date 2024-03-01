@@ -12,15 +12,27 @@ interface propertyDescriptor {
   set?(v: any): void; // setter
 }
 
+/**
+ * 실행 결과 값
+target {}
+propertyKey hello
+descriptor {
+  value: [Function: hello],
+  writable: true,
+  enumerable: false,
+  configurable: true
+}
+Error: 테스트 에러
+*/
 function HandleError() {
   return function (
     target: any,
     propertyKey: string,
     descriptor: propertyDescriptor,
   ) {
-    console.log(target);
-    console.log(propertyKey);
-    console.log(descriptor);
+    console.log('target', target);
+    console.log('propertyKey', propertyKey);
+    console.log('descriptor', descriptor);
 
     const method = descriptor.value;
 
@@ -43,3 +55,4 @@ class Greeter {
 }
 
 const t = new Greeter();
+t.hello();
