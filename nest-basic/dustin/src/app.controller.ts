@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Redirect, Req } from '@nestjs/common';
+import { Controller, Get, Inject, Query, Redirect, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ServiceB } from './user/service-B';
 
@@ -12,6 +12,7 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly serviceB: ServiceB,
+    @Inject('AliasedLoggerService') private readonly serviceAlias: any,
   ) {}
 
   @Get()
@@ -36,5 +37,15 @@ export class AppController {
   @Get('/serviceB')
   getHelloC(): string {
     return this.serviceB.getHello();
+  }
+
+  // @Get('/alias')
+  // getHelloTest(): string {
+  //   return this.serviceAlias.getHello();
+  // }
+
+  @Get('/alias')
+  getHello3(): string {
+    return this.serviceAlias.getHello();
   }
 }
