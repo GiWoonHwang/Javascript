@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApiController } from './api/api.controller';
@@ -11,6 +16,9 @@ import { LoggerService } from './prc/provider/logger.service';
 import emailConfig from 'src/config/emailConfig';
 import { validationSchema } from 'src/config/validationSchema';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoggerMiddleware } from './logger/logger.middleware';
+import { Logger2Middleware } from './logger/logger2.middleware';
+import { UserController } from './user/user.controllers';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
@@ -51,4 +59,14 @@ const loggerAliasProvider = {
     loggerAliasProvider,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer
+      // forRoutes에 해당되는 곳에서만 사용
+      .apply(LoggerMiddleware, Logger2Middleware)
+      // .forRoutes('/users')
+      // 미들웨어에서 제외할 경로 설정
+      .exclude({ path: 'user', method: RequestMethod.GET })
+      .forRoutes(UserController);
+  }
+}
