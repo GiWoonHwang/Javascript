@@ -1,22 +1,25 @@
 import {
   Body,
   Controller,
+  DefaultValuePipe,
   Delete,
   Get,
   HttpCode,
+  HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
   Redirect,
   Res,
 } from '@nestjs/common';
-import { CreateUserDto } from './common/model/dto/create-user.dto';
+import { CreateUserDto } from './model/dto/create-user.dto';
 import { UserService } from './user.service';
 
-import { UserLoginDto } from './common/model/dto/user-login.dto';
-import { VerifyEmailDto } from './common/model/dto/verify-email.dto';
-import { UserInfo } from './common/model/interface/UserInfo';
+import { UserLoginDto } from './model/dto/user-login.dto';
+import { VerifyEmailDto } from './model/dto/verify-email.dto';
+import { UserInfo } from './model/interface/UserInfo';
 
 @Controller('user')
 export class UserController {
@@ -24,7 +27,9 @@ export class UserController {
 
   @Post()
   async createUser(@Body() dto: CreateUserDto): Promise<void> {
+    console.log('type', typeof dto.name);
     const { name, email, password } = dto;
+
     await this.usersService.createUser(name, email, password);
   }
 

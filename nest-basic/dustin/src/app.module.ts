@@ -8,15 +8,14 @@ import { ServiceB } from './user/service-B';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { LoggerService } from './prc/provider/logger.service';
-import emailConfig from 'config/emailConfig';
-import { validationSchema } from 'config/validationSchema';
+import emailConfig from 'src/config/emailConfig';
+import { validationSchema } from 'src/config/validationSchema';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
   useExisting: LoggerService,
 };
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-console.log('emailConfig', emailConfig.KEY);
+
 
 @Module({
   imports: [
@@ -25,7 +24,7 @@ console.log('emailConfig', emailConfig.KEY);
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
       load: [emailConfig],
       isGlobal: true,
-      // validationSchema,
+      validationSchema,
     }),
   ],
   controllers: [ApiController, AppController],

@@ -1,6 +1,6 @@
 import * as uuid from 'uuid';
 import { Body, Get, Injectable, Param, Post, Query } from '@nestjs/common';
-import { UserInfo } from './common/model/interface/UserInfo';
+import { UserInfo } from './model/interface/UserInfo';
 import { EmailService } from 'src/email/email.service';
 
 @Injectable()
