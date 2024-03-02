@@ -1,6 +1,7 @@
 import { Controller, Get, Inject, Query, Redirect, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ServiceB } from './user/service-B';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * 와일드카드: 별표를 사용하면 문자열 가운데 어떤 문자가 와도 상관없다.
@@ -12,6 +13,7 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly serviceB: ServiceB,
+    private readonly configService: ConfigService,
     @Inject('AliasedLoggerService') private readonly serviceAlias: any,
   ) {}
 
@@ -47,5 +49,10 @@ export class AppController {
   @Get('/alias')
   getHello3(): string {
     return this.serviceAlias.getHello();
+  }
+
+  @Get('/db-host-from-config')
+  getDatabaseHostFromConfigService(): string {
+    return this.configService.get('DATABASE_HOST');
   }
 }
