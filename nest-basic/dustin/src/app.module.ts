@@ -7,9 +7,9 @@ import {
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApiController } from './api/api.controller';
-import { BaseService } from './user/base-service';
-import { ServiceA } from './user/service-A';
-import { ServiceB } from './user/service-B';
+import { BaseService } from './prc/base-service';
+import { ServiceA } from './prc/service-A';
+import { ServiceB } from './prc/service-B';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { LoggerService } from './prc/provider/logger.service';
@@ -19,6 +19,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { Logger2Middleware } from './logger/logger2.middleware';
 import { UserController } from './user/user.controllers';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth/auth.guard';
+import authConfig from './config/authConfig';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
@@ -30,7 +33,7 @@ const loggerAliasProvider = {
     UserModule,
     ConfigModule.forRoot({
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
-      load: [emailConfig],
+      load: [emailConfig, authConfig],
       isGlobal: true,
       validationSchema,
     }),

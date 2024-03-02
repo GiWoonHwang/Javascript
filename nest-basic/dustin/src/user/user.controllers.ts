@@ -13,6 +13,8 @@ import {
   Query,
   Redirect,
   Res,
+  UseGuards,
+  Headers,
 } from '@nestjs/common';
 import { CreateUserDto } from './model/dto/create-user.dto';
 import { UserService } from './user.service';
@@ -20,10 +22,15 @@ import { UserService } from './user.service';
 import { UserLoginDto } from './model/dto/user-login.dto';
 import { VerifyEmailDto } from './model/dto/verify-email.dto';
 import { UserInfo } from './model/interface/UserInfo';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private usersService: UserService) {}
+  constructor(
+    private usersService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Post()
   async createUser(@Body() dto: CreateUserDto): Promise<void> {
@@ -47,8 +54,12 @@ export class UserController {
     return await this.usersService.login(email, password);
   }
 
-  @Get('/:id')
-  async getUserInfo(@Param('id') userId: string): Promise<UserInfo> {
-    return await this.usersService.getUserInfo(userId);
+  @UseGuards(AuthGuard)
+  @Get(':id')
+  async getUserInfo(
+    @Headers() headers: any,
+    @Param('id') userId: string,
+  ): Promise<UserInfo> {
+    return this.usersService.getUserInfo(userId);
   }
 }

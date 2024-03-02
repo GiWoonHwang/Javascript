@@ -1,13 +1,23 @@
-import { Controller, Get, Inject, Query, Redirect, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  Query,
+  Redirect,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AppService } from './app.service';
-import { ServiceB } from './user/service-B';
+import { ServiceB } from './prc/service-B';
 import { ConfigService } from '@nestjs/config';
+import { AuthGuard } from './auth/auth.guard';
 
 /**
  * 와일드카드: 별표를 사용하면 문자열 가운데 어떤 문자가 와도 상관없다.
  * ex) http://localhost:3000/hdustinllo
  */
 // @Controller('h*llo')
+// @UseGuards(AuthGuard)
 @Controller()
 export class AppController {
   constructor(
@@ -17,6 +27,7 @@ export class AppController {
     @Inject('AliasedLoggerService') private readonly serviceAlias: any,
   ) {}
 
+  // @UseGuards(AuthGuard)
   @Get()
   getHello(): string {
     return this.appService.getHello();
