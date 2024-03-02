@@ -17,5 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": [
+    // 환경변수에서 값을 읽어오도록 하면 ormconfig.ts 파일이 ConfigModule.forRoot로 환경변수를 읽어오기 전에 컴파일 되기 때문에 에러가 발생한다. 따라서 컴파일 대상 소스를 지정해준다.
+    "src/**/*"
+  ]
 }

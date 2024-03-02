@@ -16,5 +16,5 @@ export class BaseService {
 
   doSomeFuncFromA(): string {
     return this.serviceA.getHello();
-  }
+      }   
 }
