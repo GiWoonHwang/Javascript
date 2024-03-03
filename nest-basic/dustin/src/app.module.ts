@@ -31,6 +31,7 @@ import {
 } from 'nest-winston';
 import { ExceptionModule } from './user/exception/exception.module';
 import { LoggingModule } from './interceptor/logging.module';
+import { BatchModule } from './batch/batch.module';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
@@ -43,6 +44,7 @@ const loggerAliasProvider = {
     LoggerModule,
     ExceptionModule,
     LoggingModule,
+    BatchModule,
     ConfigModule.forRoot({
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
       load: [emailConfig, authConfig],
