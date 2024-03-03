@@ -45,7 +45,7 @@ async function bootstrap() {
   );
   app.useGlobalInterceptors(
     new TransformInterceptor(),
-    new ErrorsInterceptor(),
+    // new ErrorsInterceptor(),
   );
   // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   await app.listen(3000);
