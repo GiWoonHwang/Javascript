@@ -29,6 +29,7 @@ import {
   utilities as nestWinstonModuleUtilities,
   WinstonModule,
 } from 'nest-winston';
+import { ExceptionModule } from './user/exception/exception.module';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
@@ -39,6 +40,7 @@ const loggerAliasProvider = {
   imports: [
     UserModule,
     LoggerModule,
+    ExceptionModule,
     ConfigModule.forRoot({
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
       load: [emailConfig, authConfig],

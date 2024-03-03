@@ -11,6 +11,10 @@ import {
   LoggerService,
   InternalServerErrorException,
   Logger,
+  UseFilters,
+  BadRequestException,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateUserDto } from './model/dto/create-user.dto';
 import { UserService } from './user.service';
@@ -24,6 +28,7 @@ import {
   WINSTON_MODULE_NEST_PROVIDER,
   WINSTON_MODULE_PROVIDER,
 } from 'nest-winston';
+import { HttpExceptionFilter } from './exception/http-exception.filter';
 
 @Controller('user')
 export class UserController {
@@ -89,4 +94,28 @@ export class UserController {
   ): Promise<UserInfo> {
     return this.usersService.getUserInfo(userId);
   }
+
+  // @UseFilters(HttpExceptionFilter)
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   if (+id < 1) {
+  //     // 1. 단순 문자열
+  //     // throw new BadRequestException('id는 0보다 큰 정수여야 합니다');
+
+  //     // 2. HttpException
+  //     throw new HttpException(
+  //       {
+  //         errorMessage: 'id는 0보다 큰 정수여야 합니다',
+  //         foo: 'bar',
+  //       },
+  //       HttpStatus.BAD_REQUEST,
+  //     );
+
+  //     // 3. 기본 제공 예외에 description을 함께 전달
+  //     throw new BadRequestException(
+  //       'id는 0보다 큰 정수여야 합니다',
+  //       'id format exception',
+  //     );
+  //   }
+  // }
 }
