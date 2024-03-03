@@ -32,6 +32,10 @@ import {
 import { ExceptionModule } from './user/exception/exception.module';
 import { LoggingModule } from './interceptor/logging.module';
 import { BatchModule } from './batch/batch.module';
+import { TerminusModule } from '@nestjs/terminus';
+import { HttpModule } from '@nestjs/axios';
+import { HealthCheckController } from './health-check/health-check.controller';
+import { DogHealthIndicator } from './health-check/dog.health';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
@@ -40,6 +44,8 @@ const loggerAliasProvider = {
 
 @Module({
   imports: [
+    TerminusModule,
+    HttpModule,
     UserModule,
     LoggerModule,
     ExceptionModule,
@@ -79,7 +85,7 @@ const loggerAliasProvider = {
     //   ],
     // }),
   ],
-  controllers: [ApiController, AppController],
+  controllers: [ApiController, AppController, HealthCheckController],
   providers: [
     AppService,
     BaseService,
@@ -87,6 +93,7 @@ const loggerAliasProvider = {
     ServiceB,
     LoggerService,
     loggerAliasProvider,
+    DogHealthIndicator,
   ],
 })
 export class AppModule implements NestModule {
