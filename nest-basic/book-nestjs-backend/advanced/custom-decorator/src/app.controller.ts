@@ -19,9 +19,9 @@ class UserEntity {
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
 
-  // @User 데코레이터를 사용하지 않을 때
+  // @User // 데코레이터를 사용하지 않을 때
   // @Get()
   // getHello(@Req() req) {
   //   console.log(req.user);
@@ -38,7 +38,10 @@ export class AppController {
   }
 
   @Get('/with-pipe')
-  getHello3(@User(new ValidationPipe({ validateCustomDecorators: true })) user: UserEntity) {
+  getHello3(
+    @User(new ValidationPipe({ validateCustomDecorators: true }))
+    user: UserEntity,
+  ) {
     console.log(user);
   }
 }

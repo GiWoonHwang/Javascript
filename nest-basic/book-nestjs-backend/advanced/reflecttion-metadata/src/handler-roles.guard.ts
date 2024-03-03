@@ -2,9 +2,11 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 
+// 메서드에 적용 됨
 @Injectable()
 export class HandlerRolesGuard implements CanActivate {
-  constructor(private reflector: Reflector) { }
+  // Reflector: 메타데이털르 다루기 위한 헬퍼 클래스
+  constructor(private reflector: Reflector) {}
 
   canActivate(
     context: ExecutionContext,

@@ -11,14 +11,14 @@ import { UsersModule } from './users/users.module';
   controllers: [AppController],
   providers: [
     AppService,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: HandlerRolesGuard,
-    // },
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: ClassRolesGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: HandlerRolesGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ClassRolesGuard,
+    },
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
@@ -26,4 +26,4 @@ import { UsersModule } from './users/users.module';
   ],
   imports: [UsersModule],
 })
-export class AppModule { }
+export class AppModule {}
