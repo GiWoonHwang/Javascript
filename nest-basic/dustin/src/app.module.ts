@@ -16,12 +16,19 @@ import { LoggerService } from './prc/provider/logger.service';
 import emailConfig from 'src/config/emailConfig';
 import { validationSchema } from 'src/config/validationSchema';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggerMiddleware } from './logger/logger.middleware';
-import { Logger2Middleware } from './logger/logger2.middleware';
+import { LoggerMiddleware } from './middleware/logger.middleware';
+import { Logger2Middleware } from './middleware/logger2.middleware';
 import { UserController } from './user/user.controllers';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import authConfig from './config/authConfig';
+import { LoggerModule } from './logging/logger.module';
+// import winston from 'winston';  이렇게 임포트하면 안됨
+import * as winston from 'winston';
+import {
+  utilities as nestWinstonModuleUtilities,
+  WinstonModule,
+} from 'nest-winston';
 
 const loggerAliasProvider = {
   provide: 'AliasedLoggerService',
@@ -31,6 +38,7 @@ const loggerAliasProvider = {
 @Module({
   imports: [
     UserModule,
+    LoggerModule,
     ConfigModule.forRoot({
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
       load: [emailConfig, authConfig],
@@ -51,6 +59,19 @@ const loggerAliasProvider = {
       synchronize: true,
       migrationsRun: false,
     }),
+    // WinstonModule.forRoot({
+    //   transports: [
+    //     new winston.transports.Console({
+    //       level: process.env.NODE_ENV === 'production' ? 'info' : 'silly',
+    //       format: winston.format.combine(
+    //         winston.format.timestamp(),
+    //         nestWinstonModuleUtilities.format.nestLike('MyApp', {
+    //           prettyPrint: true,
+    //         }),
+    //       ),
+    //     }),
+    //   ],
+    // }),
   ],
   controllers: [ApiController, AppController],
   providers: [
