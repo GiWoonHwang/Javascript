@@ -46,7 +46,7 @@ export class UserController {
 
     const { name, email, password } = dto;
 
-    // await this.usersService.createUser(name, email, password);
+    await this.usersService.createUser(name, email, password);
   }
 
   // private printWinstonLog(dto) {

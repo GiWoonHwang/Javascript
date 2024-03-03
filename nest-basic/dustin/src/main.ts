@@ -8,6 +8,9 @@ import {
   WINSTON_MODULE_NEST_PROVIDER,
   WinstonModule,
 } from 'nest-winston';
+import { LoggingInterceptor } from './interceptor/logging.interceptor';
+import { TransformInterceptor } from './interceptor/transform.interceptor';
+import { ErrorsInterceptor } from './interceptor/error.interceptor';
 
 // dotenv 패키지를 직접 사용하는 경우
 // dotenv.config({
@@ -39,6 +42,10 @@ async function bootstrap() {
     new ValidationPipe({
       transform: true,
     }),
+  );
+  app.useGlobalInterceptors(
+    new TransformInterceptor(),
+    new ErrorsInterceptor(),
   );
   // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   await app.listen(3000);

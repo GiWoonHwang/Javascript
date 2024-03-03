@@ -31,7 +31,6 @@ export class EmailService {
     emailAddress: string,
     signupVerifyToken: string,
   ) {
-    console.log('config', this.config);
     const baseUrl = this.config.baseUrl;
 
     const url = `${baseUrl}/users/email-verify?signupVerifyToken=${signupVerifyToken}`;
