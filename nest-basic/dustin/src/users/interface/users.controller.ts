@@ -37,6 +37,7 @@ export class UsersController {
 
     const command = new CreateUserCommand(name, email, password);
 
+    // commandBus를 통해 알맞은 핸들러에 전달한다. ->  CreateUser에 대한 핸들러로 이동한다.
     return this.commandBus.execute(command);
   }
 
