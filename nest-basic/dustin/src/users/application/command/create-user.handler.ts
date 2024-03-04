@@ -15,6 +15,7 @@ import { IUserRepository } from 'src/users/domain/repository/iuser.repository';
 export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
   constructor(
     private userFactory: UserFactory,
+    // IUserRepository의 구현체를 주입받는다.
     @Inject('UserRepository') private userRepository: IUserRepository,
   ) {}
 

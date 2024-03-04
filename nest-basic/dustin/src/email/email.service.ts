@@ -18,16 +18,21 @@ export class EmailService {
   constructor(
     @Inject(emailConfig.KEY) private config: ConfigType<typeof emailConfig>,
   ) {
+    // 이메일 전송 설정
     this.transporter = nodemailer.createTransport({
       service: config.service,
       auth: {
         user: config.auth.user,
         pass: config.auth.pass,
-      }
+      },
     });
   }
 
-  async sendMemberJoinVerification(emailAddress: string, signupVerifyToken: string) {
+  // 이메일 전송
+  async sendMemberJoinVerification(
+    emailAddress: string,
+    signupVerifyToken: string,
+  ) {
     const baseUrl = this.config.baseUrl;
 
     const url = `${baseUrl}/users/email-verify?signupVerifyToken=${signupVerifyToken}`;
@@ -40,8 +45,8 @@ export class EmailService {
         <form action="${url}" method="POST">
           <button>가입확인</button>
         </form>
-      `
-    }
+      `,
+    };
 
     return await this.transporter.sendMail(mailOptions);
   }

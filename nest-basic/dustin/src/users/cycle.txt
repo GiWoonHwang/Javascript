@@ -1,0 +1,24 @@
+회원가입 흐름
+
+1. interface: 컨트롤러에서 application 커맨드 객체 생성 후 커맨드 버스로 커맨드에 해당하는 핸들러로 전송
+
+2. application: create-user-hanlder로 이동
+
+3. hanlder는 UserFactory와 IUserRepository의 구현체를 주입받는다. == infra.db.repository의 UserRepository 구현체를 사용할 수 있다.
+
+4. hanlder의 execute 함수로 이동
+    (1) userRepository.findByEmail을 통해 가입한 이메일인지 확인한다
+    (2) 유효성 검사를 통과한다면, 데이터 베이스에 유저를 저장한다.
+    (3) UserFactory.create 메소드를 호출하면서 종료된다.
+
+5. Domain UserFactory는 eventBus를 주입받는다
+    (1) User 도메인 객체를 만든다.
+    (2) 이벤트 버스를통해 이벤트를 발생
+    (3) 생성한 유저 객체를 리턴한다.
+
+6. 5번에 발생시킨 이벤트가 application event-hanlder에게 도착한다.
+
+7. application event-hanlder는 IEmailService의 구현체를 주입받는다.
+    (1) 이메일 전송 이벤트를 처리한다.
+
+ 
