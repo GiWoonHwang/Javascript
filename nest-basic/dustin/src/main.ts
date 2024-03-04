@@ -43,10 +43,11 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  app.useGlobalInterceptors(
-    new TransformInterceptor(),
+  app
+    .useGlobalInterceptors
+    // new TransformInterceptor(),
     // new ErrorsInterceptor(),
-  );
+    ();
   // app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   await app.listen(3000);
 }
